@@ -30,16 +30,16 @@ class RadioTest {
 
     }
 
-    @Test //Установка нужного канала с пульта
-    public void setNewChannel() {
-        int channel = 2;
+    @ParameterizedTest //Нажатие кнопки для управления громкостью +
+    @CsvSource({"0,10", "9,-5", "1,1"})
+    public void setChannel(int expected, int inUse) {
         Radio radio = new Radio();
-        radio.setChannel(channel);
-        assertEquals(channel, radio.getChannel());
+        radio.setChannel(inUse);
+        assertEquals(expected, radio.getChannel());
 
     }
 
-    @ParameterizedTest //Нажатие кнопки назад для переключения каналов
+    @ParameterizedTest //Нажатие кнопки для управления громкостью +
     @CsvSource({"10,10", "6,5", "1,0"})
     public void addVolume(int expected, int inUse) {
         Radio radio = new Radio();
@@ -49,7 +49,7 @@ class RadioTest {
 
     }
 
-    @ParameterizedTest //Нажатие кнопки назад для переключения каналов
+    @ParameterizedTest //Нажатие кнопки для управления громкостью -
     @CsvSource({"9,10", "4,5", "0,0"})
     public void subtractVolume(int expected, int inUse) {
         Radio radio = new Radio();

@@ -33,11 +33,23 @@ public class Radio {
     }
 
     public void next(int channel) {
-        setChannel(channel + 1);
+        int channelValue = (channel + 1);
+        if (channelValue>9){
+            setChannel(0);
+        }
+        else {
+            setChannel(channelValue);
+        }
     }
 
     public void prev(int channel) {
-        setChannel(channel - 1);
+        int channelValue = (channel - 1);
+        if (channelValue<0){
+            setChannel(9);
+        }
+        else {
+            setChannel(channelValue);
+        }
     }
 
     public void volumeUp(int volume) { //Прибавка громкости
